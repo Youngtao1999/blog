@@ -11,7 +11,7 @@ const Header = () => (
         <span className="header-txt">一个偶像派歌手。</span>
       </Col>
 
-      <Col className="menu-div" xs={0} sm={0} md={14} lg={8} xl={6}>
+      <Col xs={0} sm={0} md={14} lg={8} xl={6}>
         <Menu mode="horizontal">
           <Menu.Item key="home">
             <Icon type="home"/>
