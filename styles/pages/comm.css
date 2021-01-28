@@ -28,3 +28,13 @@ body {
   color:#777;
   padding:.5rem;
 }
+.list-icon {
+  padding:  .5rem 0;
+  color: #aaa;
+}
+.list-icon span {
+  display: inline-block;
+  padding-left: .2rem;
+  padding-right: .5rem;
+}
+

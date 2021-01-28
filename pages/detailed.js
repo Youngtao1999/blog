@@ -1,24 +1,110 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Head from 'next/head'
+import ReactMarkdown from 'react-markdown'
+import MarkNavbar from "markdown-navbar"
+import "markdown-navbar/dist/navbar.css"
+import{ Row, Col, Breadcrumb, Affix } from 'antd'
+import {
+  CalendarOutlined,
+  FolderOutlined,
+  FireOutlined
+} from '@ant-design/icons';
+
 import Header from '../components/Header'
+import Author from '../components/Author'
+import Footer from '../components/Footer'
+import "../styles/pages/detailed.css"
 
-import{ Row, Col } from 'antd'
+const Detailed = () => {
 
-const Detailed = () => (
-  <>
-    <Head>
-      <title>Detailed</title>
-    </Head>
-    <Header />
-    <Row className="comm-main" type="flex" justify="center">
-      <Col className="comm-left" xs={24} sm={24} md={16} lg={18} xl={14}>
-        左侧
-      </Col>
-      <Col  className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
-        右侧
-      </Col>
-    </Row>
-    
-  </>
-)
+  let markdown=
+  '# P01:课程介绍和环境搭建\n' +
+  '[ **M** ] arkdown + E [ **ditor** ] = **Mditor**  \n' +
+  '> Mditor 是一个简洁、易于集成、方便扩展、期望舒服的编写 markdown 的编辑器，仅此而已... \n\n' +
+   '**这是加粗的文字**\n\n' +
+  '*这是倾斜的文字*`\n\n' +
+  '***这是斜体加粗的文字***\n\n' +
+  '~~这是加删除线的文字~~ \n\n'+
+  '\`console.log(111)\` \n\n'+
+  '# p02:来个Hello World 初始Vue3.0\n' +
+  '> aaaaaaaaa\n' +
+  '>> bbbbbbbbb\n' +
+  '>>> cccccccccc\n'+
+  '***\n\n\n' +
+  '# p03:Vue3.0基础知识讲解\n' +
+  '> aaaaaaaaa\n' +
+  '>> bbbbbbbbb\n' +
+  '>>> cccccccccc\n\n'+
+  '# p04:Vue3.0基础知识讲解\n' +
+  '> aaaaaaaaa\n' +
+  '>> bbbbbbbbb\n' +
+  '>>> cccccccccc\n\n'+
+  '#5 p05:Vue3.0基础知识讲解\n' +
+  '> aaaaaaaaa\n' +
+  '>> bbbbbbbbb\n' +
+  '>>> cccccccccc\n\n'+
+  '# p06:Vue3.0基础知识讲解\n' +
+  '> aaaaaaaaa\n' +
+  '>> bbbbbbbbb\n' +
+  '>>> cccccccccc\n\n'+
+  '# p07:Vue3.0基础知识讲解\n' +
+  '> aaaaaaaaa\n' +
+  '>> bbbbbbbbb\n' +
+  '>>> cccccccccc\n\n'+
+  '``` var a=11; ```'
+  
+  return (
+    <>
+      <Head>
+        <title>博客详情页</title>
+      </Head>
+      <Header />
+      <Row className="comm-main" type="flex" justify="center">
+        {/* 左侧 */}
+        <Col className="comm-left" xs={24} sm={24} md={16} lg={18} xl={14}>
+          <div>
+            <div className="bread-div">
+              <Breadcrumb>
+                <Breadcrumb.Item><a href="/">首页</a></Breadcrumb.Item>
+                <Breadcrumb.Item>视频列表</Breadcrumb.Item>
+                <Breadcrumb.Item>xxxx</Breadcrumb.Item>
+              </Breadcrumb>
+            </div>
+            <div>
+              <div className="detailed-title">
+                详情页的标题
+              </div>
+              <div className="list-icon center">
+                <span><CalendarOutlined /> 2021-01-28</span>
+                <span><FolderOutlined />全部博客</span>
+                <span><FireOutlined /> 1234人</span>
+              </div>
+              <div className="detailed-content">
+                <ReactMarkdown 
+                  source={markdown} 
+                  escapeHtml={false}  
+                />
+              </div>
+            </div>
+          </div>
+        </Col>
+        {/* 右侧 */}
+        <Col  className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
+          <Affix offsetTop={5}>
+            <Author />
+            <div className="detailed-nav comm-box">
+              <div className="nav-title">文章目录</div>
+              <MarkNavbar
+                className="article-menu"
+                source={markdown}
+                ordered={true}
+              />
+            </div>
+          </Affix>
+        </Col>
+      </Row>
+      <Footer />
+    </>
+  )
+}
 export default Detailed;
