@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
 import Header from '../components/Header'
+import Author from '../components/Author'
+import Footer from '../components/Footer'
 
-import{ Row, Col, List, Icon } from 'antd'
+import "../styles/pages/index.css"
+
+import{ Row, Col, List } from 'antd'
 
 const Home = () => {
   const [ mylist, setMylist ] = useState(
@@ -26,19 +30,19 @@ const Home = () => {
             header={<div>博客头部</div>}
             itemLayout="vertical"
             dataSource={mylist}
-            renderItem={item => {
+            renderItem={item => (
               <List.Item>
                 <div className="list-title">{item.title}</div>
                 <div className="list-content">{item.content}</div>
               </List.Item>
-            }}
+            )}
           />
         </Col>
         <Col  className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
-          右侧
+          <Author />
         </Col>
       </Row>
-      
+      <Footer />
     </>
   )
 }

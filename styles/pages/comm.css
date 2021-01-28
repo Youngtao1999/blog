@@ -8,7 +8,7 @@ body {
   border-radius: .3rem;
   border-bottom: 1px solid #eee;
 }
-.comm-right {
+.comm-box {
   background-color: #fff;
   margin-left: .5rem;
   padding: .3rem;
@@ -17,4 +17,14 @@ body {
 }
 .comm-main {
   margin-top: .5rem;
+}
+
+.list-title{
+  font-size:1.3rem;
+  color: #1e90ff;
+  padding: 0 0.5rem;
+}
+.list-context{
+  color:#777;
+  padding:.5rem;
 }

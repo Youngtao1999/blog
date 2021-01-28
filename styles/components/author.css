@@ -1,0 +1,20 @@
+.author-div {
+  text-align: center;
+  padding: 1rem;
+}
+
+.author-div dev {
+  margin-bottom: 1rem;
+}
+
+.author-intr {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 0.5rem;
+}
+
+.account {
+  font-size: 1.75rem;
+  margin-left: .8rem;
+  margin-right: .8rem;
+}
