@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/components/header.css'
 
-import { Row, Col, Menu} from 'antd'
+import { Row, Col, Menu, Switch } from 'antd'
 
 const Header = () => (
   <div className='header'>
@@ -24,6 +24,11 @@ const Header = () => (
           </Menu.Item>
         </Menu>
       </Col>
+      <Switch
+        className="switch"
+        checkedChildren="黑夜" 
+        unCheckedChildren="白昼" 
+      />
     </Row>
   </div>
 )
