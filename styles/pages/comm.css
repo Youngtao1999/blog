@@ -1,5 +1,8 @@
 body {
-  background-color: #eaeaea;
+  background-color: rgb(224, 231, 231);
+  /* background-image: url("http://zhongguose.com/img/texture.png"); */
+  background-image: url(https://www.sugarat.top/assets/img/bg.2cfdbb33.svg);
+  transition: background-color 2s ease-in;
 }
 
 .comm-left {
