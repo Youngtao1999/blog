@@ -1,0 +1,18 @@
+.bgimg {
+  text-align: center;
+  overflow: hidden;
+  background: url("https://www.sugarat.top/assets/img/bg.2cfdbb33.svg") center center / cover no-repeat;
+  /* margin: 3.6rem auto 0; */
+  position: relative;
+  box-sizing: border-box;
+  padding: 0 20px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.motto {
+  font-size: 2.5rem;
+  margin: 0 auto 1.8rem;
+}

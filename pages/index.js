@@ -8,6 +8,7 @@ import {
 } from '@ant-design/icons';
 
 import Header from '../components/Header'
+import Bgimg from '../components/Bgimg'
 import Author from '../components/Author'
 import Footer from '../components/Footer'
 import "../styles/pages/index.css"
@@ -30,6 +31,7 @@ const Home = () => {
         <title>Home</title>
       </Head>
       <Header />
+      <Bgimg />
       <Row className="comm-main" type="flex" justify="center">
         {/* 左侧 */}
         <Col className="comm-left" xs={24} sm={24} md={16} lg={18} xl={14}>
