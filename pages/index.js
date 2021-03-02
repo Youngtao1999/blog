@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
+import Link from "next/link"
+import axios from 'axios'
 import{ Row, Col, List } from 'antd'
 import {
   CalendarOutlined,
@@ -15,15 +17,8 @@ import "../styles/pages/index.css"
 
 
 
-const Home = () => {
-  const [ mylist, setMylist ] = useState(
-    [
-      {title:'标题一',content:'内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容'},
-      {title:'标题二',content:'内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容'},
-      {title:'标题三',content:'内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容'},
-      {title:'标题四',content:'内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容'},
-    ]
-  )
+const Home = (list) => {
+  const [ mylist, setMylist ] = useState(list.data)
 
   return (
     <>
@@ -41,13 +36,17 @@ const Home = () => {
             dataSource={mylist}
             renderItem={item => (
               <List.Item>
-                <div className="list-title">{item.title}</div>
-                <div className="list-icon">
-                  <span><CalendarOutlined /> 2021-01-28</span>
-                  <span><FolderOutlined />全部博客</span>
-                  <span><FireOutlined /> 1234人</span>
+                <div className="list-title">
+                  <Link href={{pathname:'/detailed',query:{id:item.id}}}>
+                    {item.title}
+                  </Link>
                 </div>
-                <div className="list-content">{item.content}</div>
+                <div className="list-icon">
+                  <span><CalendarOutlined />{item.addDate.substring(0,10)}</span>
+                  <span><FolderOutlined />{item.typeName}</span>
+                  <span><FireOutlined />{item.view_count}人</span>
+                </div>
+                <div className="list-introduce">{item.introduce}</div>
               </List.Item>
             )}
           />
@@ -61,4 +60,12 @@ const Home = () => {
     </>
   )
 }
+
+Home.getInitialProps = async () => {
+  return await axios.get("http://127.0.0.1:7001/front/getArticleList/").then(res => {
+    console.log(res);
+    return res.data;
+  });
+}
+
 export default Home;
