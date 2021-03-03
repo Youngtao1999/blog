@@ -3,7 +3,6 @@ import Head from 'next/head'
 import axios from 'axios'
 import marked from "marked"
 import hljs from "highlight.js"
-import MarkNavbar from "markdown-navbar"
 import "markdown-navbar/dist/navbar.css"
 import{ Row, Col, Breadcrumb, Affix } from 'antd'
 import {
@@ -15,12 +14,22 @@ import {
 import Header from '../components/Header'
 import Author from '../components/Author'
 import Footer from '../components/Footer'
+import Tocify from "../components/tocify.tsx"
 import "highlight.js/styles/monokai-sublime.css"
 import "../styles/pages/detailed.css"
 
 const Detailed = (props) => {
 
+  const tocify = new Tocify();
   const renderer = new marked.Renderer();
+
+  renderer.heading = function(text, level, raw) {
+    const anchor = tocify.add(text, level);
+    return `<a id="${anchor}" href="#${anchor} class="anchor-fix">
+              <h${level}>${text}</h${level}>
+            </a>\n`
+  }
+
   marked.setOptions({
     renderer: renderer,
     gfm: true,
@@ -50,18 +59,18 @@ const Detailed = (props) => {
             <div className="bread-div">
               <Breadcrumb>
                 <Breadcrumb.Item><a href="/">首页</a></Breadcrumb.Item>
-                <Breadcrumb.Item>视频列表</Breadcrumb.Item>
+                <Breadcrumb.Item>学习</Breadcrumb.Item>
                 <Breadcrumb.Item>xxxx</Breadcrumb.Item>
               </Breadcrumb>
             </div>
             <div>
               <div className="detailed-title">
-                详情页的标题
+                {props.title}
               </div>
               <div className="list-icon center">
-                <span><CalendarOutlined /> 2021-01-28</span>
-                <span><FolderOutlined />全部博客</span>
-                <span><FireOutlined /> 1234人</span>
+                <span><CalendarOutlined />{props.addDate.substring(0,10)}</span>
+                <span><FolderOutlined />{props.typeName}</span>
+                <span><FireOutlined />{props.view_count}人</span>
               </div>
               <div className="detailed-content"
                 dangerouslySetInnerHTML={{__html: html}}
@@ -76,11 +85,7 @@ const Detailed = (props) => {
             <Author />
             <div className="detailed-nav comm-box">
               <div className="nav-title">文章目录</div>
-              <MarkNavbar
-                className="article-menu"
-                source={html}
-                ordered={true}
-              />
+              {tocify && tocify.render()}
             </div>
           </Affix>
         </Col>
@@ -94,7 +99,6 @@ Detailed.getInitialProps = async(context) => {
   let id = context.query.id;
 
   return await axios.get(`http://127.0.0.1:7001/front/getArticleById/${id}`).then(res => {
-    console.log("res", res);
     return res.data.data[0];
   })
 }
