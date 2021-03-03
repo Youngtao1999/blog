@@ -15,6 +15,7 @@ import Header from '../components/Header'
 import Author from '../components/Author'
 import Footer from '../components/Footer'
 import Tocify from "../components/tocify.tsx"
+import apiPath from "../config/api"
 import "highlight.js/styles/monokai-sublime.css"
 import "../styles/pages/detailed.css"
 
@@ -98,9 +99,8 @@ const Detailed = (props) => {
 Detailed.getInitialProps = async(context) => {
   let id = context.query.id;
 
-  return await axios.get(`http://127.0.0.1:7001/front/getArticleById/${id}`).then(res => {
-    return res.data.data[0];
-  })
+  const res = await axios.get(apiPath.getArticleById + id);
+  return res.data.data[0];
 }
 
 export default Detailed;

@@ -13,6 +13,7 @@ import Header from '../components/Header'
 import Bgimg from '../components/Bgimg'
 import Author from '../components/Author'
 import Footer from '../components/Footer'
+import apiPath from "../config/api"
 import "../styles/pages/index.css"
 
 
@@ -62,10 +63,8 @@ const Home = (list) => {
 }
 
 Home.getInitialProps = async () => {
-  return await axios.get("http://127.0.0.1:7001/front/getArticleList/").then(res => {
-    console.log(res);
-    return res.data;
-  });
+  const res = await axios.get(apiPath.getArticleList);
+  return res.data;
 }
 
 export default Home;

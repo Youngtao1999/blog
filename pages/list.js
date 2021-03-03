@@ -1,23 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
+import axios from "axios"
+import Link from "next/link"
 import{ Row, Col, List, Breadcrumb } from 'antd'
+import {
+  CalendarOutlined,
+  FolderOutlined,
+  FireOutlined
+} from '@ant-design/icons';
 
 import Header from '../components/Header'
 import Author from '../components/Author'
 import Footer from '../components/Footer'
+import apiPath from "../config/api"
 import "../styles/pages/comm.css"
 
 
 
-const MyList = () => {
-  const [ mylist, setMylist ] = useState(
-    [
-      {title:'标题一',content:'内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容'},
-      {title:'标题二',content:'内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容'},
-      {title:'标题三',content:'内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容'},
-      {title:'标题四',content:'内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容'},
-    ]
-  )
+const MyList = (list) => {
+  const [ mylist, setMylist ] = useState(list.data)
+  useEffect(() => {
+    setMylist(list.data);
+  })
 
   return (
     <>
@@ -40,13 +44,17 @@ const MyList = () => {
             dataSource={mylist}
             renderItem={item => (
               <List.Item>
-                <div className="list-title">{item.title}</div>
-                <div className="list-icon">
-                  <span><Icon type="calendar" /> 2021-01-28</span>
-                  <span><Icon type="folder" />全部博客</span>
-                  <span><Icon type="fire" /> 1234人</span>
+                <div className="list-title">
+                  <Link href={{pathname:'/detailed',query:{id:item.id}}}>
+                    {item.title}
+                  </Link>
                 </div>
-                <div className="list-content">{item.content}</div>
+                <div className="list-icon">
+                  <span><CalendarOutlined />{item.addDate.substring(0,10)}</span>
+                  <span><FolderOutlined />{item.typeName}</span>
+                  <span><FireOutlined />{item.view_count}人</span>
+                </div>
+                <div className="list-introduce">{item.introduce}</div>
               </List.Item>
             )}
           />
@@ -60,4 +68,12 @@ const MyList = () => {
     </>
   )
 }
+
+MyList.getInitialProps = async(context) => {
+  let id = context.query.id;
+
+  const res = await axios.get(apiPath.getListById + id);
+  return res.data;
+}
+
 export default MyList;
