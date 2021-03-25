@@ -27,6 +27,11 @@ const Header = () => {
       Router.push("/list?id="+e.key);
     }
   }
+  // 改变背景色
+  const changeBgc = () => {
+    const toggle = document.getElementsByClassName("switch")[0];
+    document.documentElement.classList.toggle("dark-mode");
+  }
   
   return (
     <div className='header'>
@@ -52,7 +57,8 @@ const Header = () => {
         <Switch
           className="switch"
           checkedChildren="黑夜" 
-          unCheckedChildren="白昼" 
+          unCheckedChildren="白昼"
+          onChange={changeBgc}
         />
       </Row>
     </div>
