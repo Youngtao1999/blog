@@ -38,12 +38,3 @@
   width: 1rem;
   height: 1rem;
 }
-.switch {
-  position: relative;
-  top: .8rem;
-  left: 8rem;
-}
-
-.dark-mode {
-  filter: invert(1) hue-rotate(180deg);
-}

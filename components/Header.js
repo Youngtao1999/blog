@@ -4,6 +4,10 @@ import Router from "next/router"
 import Link from "next/link"
 import axios from "axios"
 
+import {
+  UnorderedListOutlined
+} from '@ant-design/icons';
+
 import apiPath from "../config/api"
 import '../styles/components/header.css'
 
@@ -19,18 +23,12 @@ const Header = () => {
     setTypeMenu(res.data.data);
   }
   // 跳转
-  const handleClick = (e) => {
-    console.log(e.key);
+  const handleClick = (e, item) => {
     if(e.key == 0) {
-      Router.push("/index");
+      Router.push("/");
     }else {
-      Router.push("/list?id="+e.key);
+      Router.push(`/list?id=${e.key}&type=${item.typeName}`);
     }
-  }
-  // 改变背景色
-  const changeBgc = () => {
-    const toggle = document.getElementsByClassName("switch")[0];
-    document.documentElement.classList.toggle("dark-mode");
   }
   
   return (
@@ -41,11 +39,15 @@ const Header = () => {
           <span className="header-txt"> 一个偶像派歌手。</span>
         </Col>
 
-        <Col xs={0} sm={0} md={14} lg={8} xl={6}>
-          <Menu mode="horizontal">
+        <Col xs={0} sm={0} md={14} lg={8} xl={8}>
+          <Menu mode="horizontal" overflowedIndicator={<UnorderedListOutlined />}>
+            <Menu.Item key={0} onClick={handleClick}>
+                  <span className="icon-span" />
+                  全部
+            </Menu.Item>
             {
               typeMenu.map((item) => (
-                <Menu.Item key={item.id} onClick={handleClick}>
+                <Menu.Item key={item.id} onClick={(event) => handleClick(event,item)}>
                   <span className="icon-span" dangerouslySetInnerHTML={{__html: item.icon}} />
                   {item.typeName}
                 </Menu.Item>
@@ -54,12 +56,6 @@ const Header = () => {
             }
           </Menu>
         </Col>
-        <Switch
-          className="switch"
-          checkedChildren="黑夜" 
-          unCheckedChildren="白昼"
-          onChange={changeBgc}
-        />
       </Row>
     </div>
   )

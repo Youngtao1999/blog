@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import axios from "axios"
 import Link from "next/link"
-import{ Row, Col, List, Breadcrumb } from 'antd'
+import{ Row, Col, List, Breadcrumb, Space } from 'antd'
 import {
   CalendarOutlined,
   FolderOutlined,
@@ -18,9 +18,19 @@ import "../styles/pages/comm.css"
 
 
 const MyList = (list) => {
-  const [ mylist, setMylist ] = useState(list.data)
+  const IconText = ({ icon, text }) => (
+    <Space>
+      {React.createElement(icon)}
+      {text}
+    </Space>
+  );
+
+  const [ mylist, setMylist ] = useState(list.data);
+  const [ type, setType ] = useState('');
+
   useEffect(() => {
     setMylist(list.data);
+    setType(list.url.query.type);
   })
 
   return (
@@ -35,26 +45,36 @@ const MyList = (list) => {
           <div className="bread-div">
             <Breadcrumb>
               <Breadcrumb.Item><a href="/">首页</a></Breadcrumb.Item>
-              <Breadcrumb.Item>列表页</Breadcrumb.Item>
+              <Breadcrumb.Item>{type}</Breadcrumb.Item>
             </Breadcrumb>
           </div>
           <List
-            header={<div>博客头部</div>}
+            header={<div>博客列表</div>}
             itemLayout="vertical"
             dataSource={mylist}
             renderItem={item => (
-              <List.Item>
-                <div className="list-title">
-                  <Link href={{pathname:'/detailed',query:{id:item.id}}}>
-                    {item.title}
-                  </Link>
-                </div>
-                <div className="list-icon">
-                  <span><CalendarOutlined />{item.addDate.substring(0,10)}</span>
-                  <span><FolderOutlined />{item.typeName}</span>
-                  <span><FireOutlined />{item.view_count}人</span>
-                </div>
-                <div className="list-introduce">{item.introduce}</div>
+              <List.Item
+                actions={[
+                  <IconText icon={CalendarOutlined} text={item.addDate.substring(0,10)} key="list-vertical-star-o" />,
+                  <IconText icon={FolderOutlined} text={item.typeName} key="list-vertical-like-o" />,
+                  <IconText icon={FireOutlined} text={item.view_count} key="list-vertical-message" />,
+                ]}
+                extra={
+                  <img
+                    width={272}
+                    alt="logo"
+                    src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                  />
+                }
+              >
+                <List.Item.Meta
+                  title={
+                    <Space>
+                      <Link href={{pathname:'/detailed',query:{id:item.id}}}>{item.title}</Link>
+                    </Space>
+                  }
+                />
+                {item.introduce}
               </List.Item>
             )}
           />
@@ -71,7 +91,6 @@ const MyList = (list) => {
 
 MyList.getInitialProps = async(context) => {
   let id = context.query.id;
-
   const res = await axios.get(apiPath.getListById + id);
   return res.data;
 }

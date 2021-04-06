@@ -16,8 +16,8 @@ import Author from '../components/Author'
 import Footer from '../components/Footer'
 import Tocify from "../components/tocify.tsx"
 import apiPath from "../config/api"
-import "highlight.js/styles/monokai-sublime.css"
 import "../styles/pages/detailed.css"
+import "highlight.js/styles/monokai-sublime.css"
 
 const Detailed = (props) => {
 
@@ -60,8 +60,8 @@ const Detailed = (props) => {
             <div className="bread-div">
               <Breadcrumb>
                 <Breadcrumb.Item><a href="/">首页</a></Breadcrumb.Item>
-                <Breadcrumb.Item>学习</Breadcrumb.Item>
-                <Breadcrumb.Item>xxxx</Breadcrumb.Item>
+                <Breadcrumb.Item>{props.typeName}</Breadcrumb.Item>
+                <Breadcrumb.Item>{props.title}</Breadcrumb.Item>
               </Breadcrumb>
             </div>
             <div>

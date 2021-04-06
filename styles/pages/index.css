@@ -7,3 +7,16 @@
   color:#777;
   padding:.5rem;
 }
+
+.typeName {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+  margin-left: 1rem;
+}
+.ant-list-item {
+  position: relative;
+}
+.ant-list-item-action {
+  position: absolute;
+  bottom: 1rem;
+}
