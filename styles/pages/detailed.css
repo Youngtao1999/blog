@@ -8,8 +8,15 @@
   text-align: center;
   padding: 1rem;
 }
+.notice-nav {
+  margin-top: .5rem;
+  padding: .6rem 2rem;
+}
+.notice-nav span {
+  margin-right: .2rem;
+}
 .detailed-nav {
-  margin-top: 1rem;
+  margin-top: .8rem;
 }
 .center{
   text-align: center;

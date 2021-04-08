@@ -3,12 +3,13 @@ import Head from 'next/head'
 import axios from 'axios'
 import marked from "marked"
 import hljs from "highlight.js"
-import "markdown-navbar/dist/navbar.css"
+// import "markdown-navbar/dist/navbar.css"
 import{ Row, Col, Breadcrumb, Affix } from 'antd'
 import {
   CalendarOutlined,
   FolderOutlined,
-  FireOutlined
+  FireOutlined,
+  NotificationTwoTone
 } from '@ant-design/icons';
 
 import Header from '../components/Header'
@@ -84,6 +85,10 @@ const Detailed = (props) => {
         <Col  className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
           <Affix offsetTop={5}>
             <Author />
+            <div className="notice-nav comm-box">
+              <NotificationTwoTone twoToneColor="#eb2f96"/>
+              公告：每周至少一更
+            </div>
             <div className="detailed-nav comm-box">
               <div className="nav-title">文章目录</div>
               {tocify && tocify.render()}

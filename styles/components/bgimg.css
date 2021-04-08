@@ -12,7 +12,10 @@
   justify-content: center;
 }
 
-.motto {
+.hitokoto {
   font-size: 2.5rem;
   margin: 0 auto 1.8rem;
+}
+.from {
+  text-align: end;
 }

@@ -34,12 +34,12 @@ const Header = () => {
   return (
     <div className='header'>
       <Row type='flex' justify='center'>
-        <Col xs={24} sm={24} md={10} lg={15} xl={12}>
+        <Col xs={20} sm={24} md={10} lg={15} xl={12}>
           <span className="header-logo">Young</span>
           <span className="header-txt"> 一个偶像派歌手。</span>
         </Col>
 
-        <Col xs={0} sm={0} md={14} lg={8} xl={8}>
+        <Col xs={4} sm={0} md={14} lg={8} xl={10}>
           <Menu mode="horizontal" overflowedIndicator={<UnorderedListOutlined />}>
             <Menu.Item key={0} onClick={handleClick}>
                   <span className="icon-span" />
