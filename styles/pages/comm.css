@@ -3,6 +3,8 @@ body {
   /* background-image: url(https://www.sugarat.top/assets/img/bg.2cfdbb33.svg); */
   /* background-image: url("http://zhongguose.com/img/texture.png"); */
   transition: background-color 2s ease-in;
+  color: #2c3e5c;
+  font-family: "SF Pro SC", "SF Pro Text", "SF Pro Icons", PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
 }
 
 .comm-left {
@@ -42,4 +44,42 @@ body {
   padding-left: .2rem;
   padding-right: .5rem;
 }
-
+.notice-nav {
+  margin-top: .5rem;
+  padding: .6rem 1rem;
+}
+.notice-nav span {
+  margin-right: .2rem;
+}
+.notice-logo {
+  text-align: center;
+  margin-bottom: .5rem;
+}
+.image-cover {
+  cursor:pointer;
+  width: 272px;
+  height: 168px;
+  border-radius: 10px;
+}
+.image-cover:hover {
+  transition: transform 0.5s;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%);
+}
+.ant-space-item a {
+  font-size: 1.2rem;
+}
+.page-div {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+}
+@media screen and (max-width:576px) {
+  .ant-menu-submenu-popup {
+    width: 100%;
+  }
+  .ant-menu-submenu-popup .ant-menu-item {
+    display: flex;
+    justify-content: center;
+  }
+}

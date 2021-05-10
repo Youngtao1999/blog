@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import Head from 'next/head'
 import Link from "next/link"
 import axios from 'axios'
-import{ Row, Col, List, Space } from 'antd'
+import{ Row, Col, List, Space, Pagination } from 'antd'
 import {
   CalendarOutlined,
   FolderOutlined,
-  FireOutlined
+  FireOutlined,
+  EyeOutlined,
+  NotificationTwoTone
 } from '@ant-design/icons';
 
 import Header from '../components/Header'
@@ -26,12 +28,27 @@ const Home = (list) => {
     </Space>
   );
 
-  const [ mylist, setMylist ] = useState(list.data)
+  const [ mylist, setMylist ] = useState(list)
+  const [ current, setCurrent ] = useState(1)
+  const [ pageSize, setPageSize ] = useState(10)
+
+  const changePage = (page) => {
+    axios({
+      method: 'get',
+      url: apiPath.getArticleList,
+      params: {
+        page: page,
+        size: pageSize
+      }
+    }).then(res => {
+      setMylist(res.data)
+    })
+  }
 
   return (
     <>
       <Head>
-        <title>Home</title>
+        <title>首页</title>
       </Head>
       <Header />
       <Bgimg />
@@ -41,20 +58,22 @@ const Home = (list) => {
           <List
             header={<div>全部博客</div>}
             itemLayout="vertical"
-            dataSource={mylist}
+            dataSource={mylist.data}
             renderItem={item => (
               <List.Item
                 actions={[
                   <IconText icon={CalendarOutlined} text={item.addDate.substring(0,10)} key="list-vertical-star-o" />,
                   <IconText icon={FolderOutlined} text={item.typeName} key="list-vertical-like-o" />,
-                  <IconText icon={FireOutlined} text={item.view_count} key="list-vertical-message" />,
+                  <IconText icon={EyeOutlined} text={item.view_count} key="list-vertical-message" />,
                 ]}
                 extra={
-                  <img
-                    width={272}
-                    alt="logo"
-                    src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-                  />
+                  <Link href={{pathname:'/detailed',query:{id:item.id, type:item.typeName}}}>
+                    <img
+                      className="image-cover"
+                      alt="logo"
+                      src={item.image}
+                    />
+                  </Link>
                 }
               >
                 <List.Item.Meta
@@ -68,6 +87,15 @@ const Home = (list) => {
               </List.Item>
             )}
           />
+          <div className="page-div">
+            <Pagination
+              className="pagination"
+              size="small" 
+              total={mylist.total}
+              pageSize={pageSize}
+              onChange={changePage}
+            />
+          </div>
         </Col>
         {/* 右侧 */}
         <Col  className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
@@ -80,8 +108,14 @@ const Home = (list) => {
 }
 
 Home.getInitialProps = async () => {
-  const res = await axios.get(apiPath.getArticleList);
-  console.log(res.data);
+  const res = await axios({
+    method: 'get',
+    url: apiPath.getArticleList,
+    params: {
+      page: 1,
+      size: 10
+    }
+  });
   return res.data;
 }
 

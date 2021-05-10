@@ -1,3 +1,11 @@
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+h3 {
+  color: #666;
+  border-left: 4px solid #3eaf7c;
+  padding-left: .4rem;
+}
 .bread-div{
   padding: .5rem;
   border-bottom:1px solid #eee;
@@ -25,35 +33,72 @@
   padding: 1.3rem;
   font-size: 1rem;
 }
+strong {
+  color: #666;
+}
 pre{
   display: block;
   background-color:#f3f3f3;
-   padding: .5rem !important;
-   overflow-y: auto;
-   font-weight: 300;
-   font-family: Menlo, monospace;
-   border-radius: .3rem;
+  padding: .5rem !important;
+  overflow-y: auto;
+  font-weight: 300;
+  font-family: Menlo, monospace;
+  border-radius: .3rem;
 }
 pre{
+  background-color: #283646 !important;
+}
+pre >code{
+  overflow-x: auto;
+  color:#e0e2e4;
+  white-space: pre;
+  /* padding: 1.2rem 1.4rem; */
+  /* font-size: .85rem; */
+  line-height: 1.2rem;
+  display: block;
+  border: 0px !important;
+  background-color: #283646 !important;
+}
+pre .hljs-keyword {
+  color: #c678dd;
+}
+pre .hljs-string {
+  color: #42b983;
+}
+pre .hljs-attr {
+  color: #6eafef;
+}
+pre .hljs-comment {
+  color: #b3b3b3;
+}
+pre .hljs-number {
+  color: #D19A56;
+}
+/* pre{
   background-color: #283646 !important;
 }
 pre >code{
   border:0px !important;
   background-color: #283646 !important;
   color:#FFF;
-
-}
+} */
 code {
   display: inline-block ;
-  background-color:#f3f3f3;
-  border:1px solid #fdb9cc;
+  background-color: #f8f8f8;
   border-radius:3px;
-  font-size: 12px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color:#4f4f4f;
-  margin: 0px 3px;
-
+  font-size: .85rem;
+  padding: .1rem .25rem;
+  color:#d63200;
+  position: relative;
+  top: -0.1rem;
+}
+blockquote {
+  border-left:4px solid #cbcbcb ;
+  padding: 5px 10px 5px 30px; 
+  background-color: #f8f8f8;
+}
+blockquote p {
+  margin-bottom: 0;
 }
 
 .title-anchor{
@@ -84,8 +129,10 @@ iframe{
   height: 34rem;
 }
 .detailed-content  img{
-  width: 100%;
+  width: 80%;
   border:1px solid #f3f3f3;
+  display: block;
+  margin: 0 auto;
 }
 .title-level3{
   display: none !important;
@@ -96,3 +143,34 @@ iframe{
 .ant-anchor-wrapper{
   padding: 5px !important;
 }
+.other-article {
+  margin-bottom: 2rem;
+  color: #3c4858;
+  font-size: 1.1rem;
+  padding: 0 .5rem;
+  /* font-weight: 600; */
+}
+.visible-mobile {
+  display: none;
+}
+.last-article, .next-article {
+  cursor: pointer;
+}
+.last-article:hover, .next-article:hover {
+  color: #30a9de;
+}
+.last-article {
+  float: left;
+}
+.next-article {
+  float: right;
+}
+@media screen and (max-width:576px) {
+  .hidden-mobile {
+    display: none;
+  }
+  .visible-mobile {
+    display: block;
+  }
+}
+

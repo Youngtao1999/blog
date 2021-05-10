@@ -38,3 +38,7 @@
   width: 1rem;
   height: 1rem;
 }
+.search-input {
+  position: relative;
+  top: .5rem;
+}

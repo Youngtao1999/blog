@@ -14,8 +14,25 @@
   padding: 1rem 0;
 }
 
+.github {
+  color: #999;
+}
+.github:hover {
+  color: black;
+}
+.wechat:hover {
+  color: #57EE7D;
+}
+.qq:hover {
+  color: #E31010;
+}
+
 .account {
   font-size: 1.75rem;
   margin-left: .8rem;
   margin-right: .8rem;
+  cursor:pointer;
+}
+.ant-popover-inner-content {
+  padding: .1rem;
 }

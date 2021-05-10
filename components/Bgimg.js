@@ -17,7 +17,7 @@ const Bgimg = () => {
     }
     const res = await axios({
       method: 'GET',
-      url: 'http://v1.hitokoto.cn',
+      url: 'https://v1.hitokoto.cn',
       params,
     })
     setHitokoto(res.data.hitokoto);

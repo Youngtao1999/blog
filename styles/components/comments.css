@@ -1,0 +1,77 @@
+.coments-count {
+  font-size: 20px;
+  color: #3c4858;
+  margin-top: .6rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+.ant-comment-actions {
+  float: right;
+}
+.ant-comment-actions > li > span {
+  font-size: 13px;
+  margin-left: .6rem;
+}
+.ant-comment-actions > li > span > span {
+  margin-left: .2rem;
+}
+.ant-comment-actions > li:last-child > span {
+  color: #eb2f96;
+}
+.reply-to {
+  color: #52c41a !important;
+}
+.ant-comment-content-detail > p {
+  color: #3c4858;
+}
+.ant-form-item {
+  margin-bottom: .5rem;
+}
+.ant-form-item button {
+  float: right;
+}
+.submit-box {
+  border: 1px solid #f0f0f0;
+  border-radius: .4rem;
+  /* margin-bottom: .6rem; */
+  overflow: hidden;
+  position: relative;
+  padding: .6rem;
+  position: relative;
+}
+.user-input {
+  border-bottom: 1px dashed #dedede;
+}
+.user-input:focus {
+  border-bottom: 1px dashed #e08383;
+}
+.close-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.close-btn svg {
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.avatar-div {
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  color: white;
+  border-radius: 50%;
+  background-color: #5cb3cc;
+}
+.avatar-reply {
+  background-color: #7bd8b1;
+}
+.reply-box {
+  background-color: #fafbfc;
+  padding-left: 1rem;
+  border-radius: .5rem;
+}
+.from-name {
+  color: #1abc9c;
+  margin-right: 1rem;
+}
